@@ -14,7 +14,7 @@ public class JobDTO {
     @NotBlank(message = "Job Title is Mandatory")
     private String jobTitle;
     @NotBlank(message = "Company is Mandatory")
-    @Pattern(regexp = "^[A-Za-z]+$\",message = \"company Name should contain Alphabe Lettres")
+    @Pattern(regexp = "^[A-Za-z]+$\",message = \"company Name Should Contain Alphabe Lettres")
     private String company;
     private String location;
     private String type;
