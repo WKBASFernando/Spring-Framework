@@ -4,6 +4,7 @@ import com.ijse.o11back_end.dto.JobDTO;
 import com.ijse.o11back_end.service.JobService;
 import com.ijse.o11back_end.service.impl.JobServiceImpl;
 import com.ijse.o11back_end.util.APIResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class JobController {
     //constructor injection (Required Args Constructor Annotation eka damme meakata)
     private final JobService jobService;
     @PostMapping("create")
-    public ResponseEntity<APIResponse> createJob(@RequestBody JobDTO jobDTO) {
+    public ResponseEntity<APIResponse> createJob(@Valid @RequestBody JobDTO jobDTO) {
         jobService.saveJob(jobDTO);
         return ResponseEntity.ok(
                 new APIResponse(
