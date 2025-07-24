@@ -19,4 +19,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new APIResponse(404, e.getMessage(), null),
                 HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<APIResponse> handlesValidationException(ValidationException e){
+        return new ResponseEntity<>(new APIResponse(400, e.getMessage(), null),
+                HttpStatus.BAD_REQUEST);
+    }
 }

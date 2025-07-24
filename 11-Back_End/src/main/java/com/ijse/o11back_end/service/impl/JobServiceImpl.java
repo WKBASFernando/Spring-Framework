@@ -2,6 +2,8 @@ package com.ijse.o11back_end.service.impl;
 
 import com.ijse.o11back_end.dto.JobDTO;
 import com.ijse.o11back_end.entity.Job;
+import com.ijse.o11back_end.exceptions.ResourceNotFoundException;
+import com.ijse.o11back_end.exceptions.ValidationException;
 import com.ijse.o11back_end.repository.JobRepository;
 import com.ijse.o11back_end.service.JobService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,9 @@ public class JobServiceImpl implements JobService {
     private final ModelMapper modelMapper;
     //logic to save job
     public void saveJob(JobDTO jobDTO) {
+        if (jobDTO.getJobTitle()==null){
+            throw new ValidationException("Job title is required");
+        }
         jobRepository.save(modelMapper.map(jobDTO, Job.class));
     }
 
@@ -32,6 +37,9 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<JobDTO> getAllJobs() {
         List<Job> jobs = jobRepository.findAll();
+        if (jobs.isEmpty()){
+            throw new ResourceNotFoundException("No Job Found");
+        }
         return modelMapper.map(jobs, new TypeToken<List<JobDTO>>() {}.getType());
     }
 
