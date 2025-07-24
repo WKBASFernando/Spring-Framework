@@ -1,5 +1,7 @@
 package com.ijse.o11back_end.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 @Getter
@@ -9,7 +11,10 @@ import lombok.*;
 @NoArgsConstructor
 public class JobDTO {
     private Integer id;
+    @NotBlank(message = "Job Title is Mandatory")
     private String jobTitle;
+    @NotBlank(message = "Company is Mandatory")
+    @Pattern(regexp = "^[A-Za-z]+$\",message = \"company Name should contain Alphabe Lettres")
     private String company;
     private String location;
     private String type;
