@@ -47,7 +47,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Failed to fetch jobs:', error);
-                alert('Failed to fetch jobs 😓');
+                alert('Failed to fetch jobs');
                 renderJobs([]);
             }
         });
@@ -139,7 +139,7 @@ $(document).ready(function () {
                     const job = jobs.find(j => j.id === jobId);
 
                     if (!job) {
-                        alert("Job not found 😓");
+                        alert("Job not found");
                         return;
                     }
 
@@ -156,7 +156,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Failed to fetch job details:', error);
-                alert('Failed to fetch job details 🫠');
+                alert('Failed to fetch job details');
             }
         });
     });
@@ -270,7 +270,7 @@ function loadPaginatedJobs(page) {
             console.error('Failed to load paginated jobs:', error);
             console.error('XHR status:', xhr.status);
             console.error('Response text:', xhr.responseText);
-            alert("Failed to load paginated jobs 🫠");
+            alert("Failed to load paginated jobs");
         }
     });
 }
