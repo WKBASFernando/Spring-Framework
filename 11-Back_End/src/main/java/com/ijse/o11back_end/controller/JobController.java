@@ -6,6 +6,7 @@ import com.ijse.o11back_end.service.impl.JobServiceImpl;
 import com.ijse.o11back_end.util.APIResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Slf4j
 @RestController
 @RequestMapping("api/v1/job")
 @RequiredArgsConstructor
 @CrossOrigin
 public class JobController {
-    Logger logger = Logger.getLogger(JobController.class.getName());
     //constructor injection (Required Args Constructor Annotation eka damme meakata)
     private final JobService jobService;
     @PostMapping("create")
     public ResponseEntity<APIResponse> createJob(@Valid @RequestBody JobDTO jobDTO) {
-        logger.info("Job Created Successfully");
+        log.info("Job Created");
         jobService.saveJob(jobDTO);
         return ResponseEntity.ok(
                 new APIResponse(
