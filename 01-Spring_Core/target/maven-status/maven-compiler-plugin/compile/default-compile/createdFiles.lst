@@ -1,0 +1,6 @@
+com\ijse\bean\MyConnection.class
+com\ijse\bean\TestBean2.class
+com\ijse\bean\TestBean1.class
+com\ijse\AppInitializer.class
+com\ijse\config\AppConfig.class
+com\ijse\bean\SpringBean.class
