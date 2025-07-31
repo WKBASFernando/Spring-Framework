@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class ApiResponse {
-    private Long id;
-    private String username;
-    private String password;
+    private int status;
+    private String message;
+    private Object data;
 }
