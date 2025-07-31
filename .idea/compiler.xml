@@ -18,11 +18,27 @@
         <module name="02-Spring_Bean_Life_Cycles" />
         <module name="01-Spring_Core" />
       </profile>
+      <profile name="Annotation profile for 13-Auth_Back_End" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="O13-Auth_Back_End" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="back" target="17" />
+      <module name="O13-Auth_Backend" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="O11-Back_End" options="-parameters" />
+      <module name="O13-Auth_Back_End" options="-parameters" />
+      <module name="O13-Auth_Backend" options="-parameters" />
+      <module name="back" options="-parameters" />
     </option>
   </component>
 </project>
