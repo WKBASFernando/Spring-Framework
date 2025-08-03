@@ -29,7 +29,7 @@ public class JwtUtil {
         return Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
                 .build()
-                .parseClaimsJws(token) // ✅ this is the correct one!
+                .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
     }
