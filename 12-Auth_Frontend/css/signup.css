@@ -39,6 +39,24 @@ body {
 .form-control::placeholder {
     color: #aaa;
 }
+.form-select {
+    background: #3a3a5a;
+    border-radius: 10px;
+    padding: 0.75rem;
+    border: 1px solid #4a4a6a;
+    color: #ffffff;
+    transition: border-color 0.3s ease;
+}
+.form-select:focus {
+    border-color: #7e6bff;
+    box-shadow: 0 0 0 0.2rem rgba(126, 107, 255, 0.25);
+    background: #3a3a5a;
+    color: #ffffff;
+}
+.form-select option {
+    background: #3a3a5a;
+    color: #ffffff;
+}
 .btn-signup {
     background: linear-gradient(90deg, #7e6bff, #a14bff);
     border: none;
@@ -68,4 +86,40 @@ body {
 }
 .signup-footer a:hover {
     text-decoration: underline;
+}
+.role-selection {
+    background: #3a3a5a;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #4a4a6a;
+    margin-bottom: 1rem;
+}
+.role-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.role-option:hover {
+    background: rgba(126, 107, 255, 0.1);
+}
+.role-option:last-child {
+    margin-bottom: 0;
+}
+.role-option input[type="radio"] {
+    margin-right: 0.75rem;
+    accent-color: #7e6bff;
+}
+.role-label {
+    color: #ffffff;
+    font-weight: 500;
+    margin: 0;
+}
+.role-description {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin: 0;
 }
