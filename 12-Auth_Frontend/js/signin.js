@@ -6,9 +6,8 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
         password: document.getElementById('password').value
     };
 
-    console.log('Sending data:', formData); // Debug log
+    console.log('Sending data:', formData);
 
-    // AJAX request to backend
     fetch('http://localhost:8080/auth/login', {
         method: 'POST',
         mode: 'cors',
@@ -18,10 +17,9 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
         body: JSON.stringify(formData)
     })
         .then(async response => {
-            console.log('Response status:', response.status); // Debug log
+            console.log('Response status:', response.status);
 
             if (!response.ok) {
-                // Try to get error message from response
                 let errorMessage = 'Unknown error';
                 try {
                     const errorData = await response.text();
@@ -37,23 +35,29 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
         .then(data => {
             console.log('Success:', data);
 
-            // Store user data or token if needed
             if (data.token) {
                 localStorage.setItem('authToken', data.token);
             }
             if (data.user) {
                 localStorage.setItem('userData', JSON.stringify(data.user));
+
+                alert(`Sign in successful!\nWelcome back, ${formData.username}!`);
+
+                if (data.user.role === 'ADMIN') {
+                    window.location.href = 'admin-dashboard.html';
+                } else if (data.user.role === 'USER') {
+                    window.location.href = 'user-dashboard.html';
+                } else {
+                    window.location.href = 'dashboard.html';
+                }
+            } else {
+                alert(`Sign in successful!\nWelcome back, ${formData.username}!`);
+                window.location.href = 'dashboard.html';
             }
-
-            alert(`Sign in successful!\nWelcome back, ${formData.username}!`);
-
-            // Redirect to dashboard after successful login
-            window.location.href = 'dashboard.html';
         })
         .catch(error => {
             console.error('Error:', error);
 
-            // Show appropriate error message
             if (error.message.includes('401')) {
                 alert('Invalid username or password. Please try again.');
             } else if (error.message.includes('404')) {

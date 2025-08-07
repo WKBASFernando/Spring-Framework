@@ -4,10 +4,10 @@ document.querySelector('form').addEventListener('submit', function(e) {
     const formData = {
         username: document.getElementById('username').value,
         password: document.getElementById('password').value,
-        role: document.querySelector('input[name="accountType"]:checked').value.toUpperCase() // Convert to ADMIN or USER
+        role: document.querySelector('input[name="accountType"]:checked').value.toUpperCase()
     };
 
-    console.log('Sending data:', formData); // Debug log
+    console.log('Sending data:', formData);
 
     fetch('http://localhost:8080/auth/register', {
         method: 'POST',
@@ -18,7 +18,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
         body: JSON.stringify(formData)
     })
         .then(async response => {
-            console.log('Response status:', response.status); // Debug log
+            console.log('Response status:', response.status);
 
             if (!response.ok) {
                 let errorMessage = 'Unknown error';
