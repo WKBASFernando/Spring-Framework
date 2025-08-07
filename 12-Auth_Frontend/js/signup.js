@@ -1,14 +1,16 @@
+// Handle form submission with AJAX
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const formData = {
         username: document.getElementById('username').value,
         password: document.getElementById('password').value,
-        role: document.querySelector('input[name="accountType"]:checked').value.toUpperCase()
+        role: document.querySelector('input[name="accountType"]:checked').value.toUpperCase() // Convert to ADMIN or USER
     };
 
-    console.log('Sending data:', formData);
+    console.log('Sending data:', formData); // Debug log
 
+    // AJAX request to backend
     fetch('http://localhost:8080/auth/register', {
         method: 'POST',
         mode: 'cors',
@@ -18,9 +20,10 @@ document.querySelector('form').addEventListener('submit', function(e) {
         body: JSON.stringify(formData)
     })
         .then(async response => {
-            console.log('Response status:', response.status);
+            console.log('Response status:', response.status); // Debug log
 
             if (!response.ok) {
+                // Try to get error message from response
                 let errorMessage = 'Unknown error';
                 try {
                     const errorData = await response.text();
@@ -36,6 +39,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
         .then(data => {
             console.log('Success:', data);
             alert(`Account created successfully!\nRole: ${formData.role}\nWelcome, ${formData.username}!`);
+            // Redirect to dashboard after successful signup
             window.location.href = 'dashboard.html';
         })
         .catch(error => {
@@ -44,6 +48,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
         });
 });
 
+// Add visual feedback for role selection
 document.querySelectorAll('input[name="accountType"]').forEach(radio => {
     radio.addEventListener('change', function() {
         document.querySelectorAll('.role-option').forEach(option => {
@@ -53,4 +58,5 @@ document.querySelectorAll('input[name="accountType"]').forEach(radio => {
     });
 });
 
+// Set initial selection visual
 document.querySelector('input[name="accountType"]:checked').closest('.role-option').style.background = 'rgba(126, 107, 255, 0.2)';

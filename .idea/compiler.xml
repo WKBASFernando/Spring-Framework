@@ -10,6 +10,7 @@
         <module name="03-Dependancy_Injection_with_Spring" />
         <module name="09-REST_Controllers" />
         <module name="06-Runtime_Value_Injection" />
+        <module name="O14-Spring_Boot_Testing" />
         <module name="04-FullMode_vs_LightMode" />
         <module name="07-Spring_Environment" />
         <module name="08-Spring_Web_MVC" />
@@ -38,6 +39,7 @@
       <module name="O11-Back_End" options="-parameters" />
       <module name="O13-Auth_Back_End" options="-parameters" />
       <module name="O13-Auth_Backend" options="-parameters" />
+      <module name="O14-Spring_Boot_Testing" options="-parameters" />
       <module name="back" options="-parameters" />
     </option>
   </component>
