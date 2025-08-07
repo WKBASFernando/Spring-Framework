@@ -13,8 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTests {
@@ -41,6 +40,7 @@ public class ProductServiceImplTests {
         //assert
         Assertions.assertNotNull(saveProduct);
         Assertions.assertEquals(product, saveProduct);
-        verify(productRepository).save(any(Product.class));
+        Assertions.assertEquals(1L, saveProduct.getId());
+        verify(productRepository,times(1)).save(any(Product.class));
     }
 }
