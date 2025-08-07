@@ -3,6 +3,7 @@ package com.ijse.o14spring_boot_testing;
 import com.ijse.o14spring_boot_testing.entity.Product;
 import com.ijse.o14spring_boot_testing.repo.ProductRepository;
 import com.ijse.o14spring_boot_testing.service.impl.ProductServiceImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductServiceImplTests {
@@ -29,6 +34,13 @@ public class ProductServiceImplTests {
 
     @Test
     void shouldSaveProduct(){
-
+        //arrange
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+        //action
+        Product saveProduct = productService.createProduct(product);
+        //assert
+        Assertions.assertNotNull(saveProduct);
+        Assertions.assertEquals(product, saveProduct);
+        verify(productRepository).save(any(Product.class));
     }
 }
