@@ -44,9 +44,9 @@ document.querySelector('button[type="submit"]').addEventListener('click', functi
                 alert(`Sign in successful!\nWelcome back, ${formData.username}!`);
 
                 if (data.user.role === 'ADMIN') {
-                    window.location.href = 'admin-dashboard.html';
+                    window.location.href = 'dashboard.html';
                 } else if (data.user.role === 'USER') {
-                    window.location.href = 'user-dashboard.html';
+                    window.location.href = 'dashboard.html';
                 } else {
                     window.location.href = 'dashboard.html';
                 }

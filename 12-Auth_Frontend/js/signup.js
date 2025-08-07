@@ -36,7 +36,6 @@ document.querySelector('form').addEventListener('submit', function(e) {
         .then(data => {
             console.log('Success:', data);
             alert(`Account created successfully!\nRole: ${formData.role}\nWelcome, ${formData.username}!`);
-            // Redirect to dashboard after successful signup
             window.location.href = 'dashboard.html';
         })
         .catch(error => {
