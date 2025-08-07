@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -27,7 +29,7 @@ public class ProductServiceImplTests {
         product = Product.builder()
                 .id(1L)
                 .name("Test Product")
-                .price(100.0)
+                .price(10.11)
                 .build();
     }
 
@@ -42,5 +44,34 @@ public class ProductServiceImplTests {
         Assertions.assertEquals(product, saveProduct);
         Assertions.assertEquals(1L, saveProduct.getId());
         verify(productRepository,times(1)).save(any(Product.class));
+    }
+
+    @Test
+    void shouldUpdateProduct(){
+        Product updateProduct = Product.builder()
+                .id(1L)
+                .name("Update Project")
+                .price(10.11).build();
+
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+        when(productRepository.save(any(Product.class))).thenReturn(updateProduct);
+        Product result = productService.updateProduct(updateProduct);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(updateProduct, result);
+        Assertions.assertEquals("Update Project", result.getName());
+        Assertions.assertEquals(10.11, result.getPrice());
+        verify(productRepository,times(1)).findById(1L);
+    }
+
+    @Test
+    void shouldGetProduct(){
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+
+        Product product1 = productService.getProductById(1L);
+        Assertions.assertNotNull(product1);
+        Assertions.assertEquals(product, product1);
+        Assertions.assertEquals(1L,product1.getId());
+        verify(productRepository,times(1)).findById(1L);
     }
 }
